@@ -158,10 +158,7 @@ namespace Company.WebApplication1
 #endif
             app.UseStaticFiles();
 
-            app.UseRouting(routes =>
-            {
-                routes.MapRazorPages();
-            });
+            app.UseRouting();
 
             app.UseCookiePolicy();
 
@@ -169,6 +166,11 @@ namespace Company.WebApplication1
             app.UseAuthentication();
 #endif
             app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+            });
         }
     }
 }

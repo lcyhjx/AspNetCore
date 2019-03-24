@@ -78,9 +78,10 @@ namespace Microsoft.AspNetCore.SignalR.Tests
 
                     var ex = Assert.Throws<InvalidOperationException>(() =>
                     {
-                        app.UseRouting(routes =>
+                        app.UseRouting();
+                        app.UseEndpoints(endpoints =>
                         {
-                            routes.MapHub<AuthHub>("/overloads");
+                            endpoints.MapHub<AuthHub>("/overloads");
                         });
                     });
 
@@ -241,7 +242,8 @@ namespace Microsoft.AspNetCore.SignalR.Tests
                 })
                 .Configure(app =>
                 {
-                    app.UseRouting(routes => configure(routes));
+                    app.UseRouting();
+                    app.UseEndpoints(endpoints => configure(endpoints));
                 })
                 .UseUrls("http://127.0.0.1:0")
                 .Build();
